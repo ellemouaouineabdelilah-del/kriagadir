@@ -1,13 +1,13 @@
 {
   "files": {
     "main.css": "/kriagadir/static/css/main.14787d48.css",
-    "main.js": "/kriagadir/static/js/main.bb08f4e4.js",
+    "main.js": "/kriagadir/static/js/main.e386e79e.js",
     "index.html": "/kriagadir/index.html",
     "main.14787d48.css.map": "/kriagadir/static/css/main.14787d48.css.map",
-    "main.bb08f4e4.js.map": "/kriagadir/static/js/main.bb08f4e4.js.map"
+    "main.e386e79e.js.map": "/kriagadir/static/js/main.e386e79e.js.map"
   },
   "entrypoints": [
     "static/css/main.14787d48.css",
-    "static/js/main.bb08f4e4.js"
+    "static/js/main.e386e79e.js"
   ]
 }
