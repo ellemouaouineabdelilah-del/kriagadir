@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from 'react';
+import { Helmet } from '@dr.pogodin/react-helmet';
+
 import './App.css';
 
 function App() {
@@ -59,7 +61,7 @@ function App() {
     { 
       id: 4, 
       name: 'Ferrari F8 Tributo', 
-      image: 'https://images.unsplash.com/photo-1584345604476-8ec5e5e5061c?w=500&h=300&fit=crop', 
+      image: 'https://images.unsplash.com/photo-1606664515524-ed2f786a0bd6?w=500&h=300&fit=crop', 
       price: 2500, 
       priceText: '2500€/day', 
       type: 'Sport', 
@@ -137,14 +139,7 @@ function App() {
     setSelectedCar(null);
   };
 
-  const handleSmoothScroll = (e, targetId) => {
-    e.preventDefault();
-    const targetElement = document.getElementById(targetId);
-    if (targetElement) {
-      targetElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      window.history.pushState(null, '', `#${targetId}`);
-    }
-  };
+
 
   useEffect(() => {
     if (window.location.hash) {
@@ -166,18 +161,30 @@ function App() {
     return () => window.removeEventListener('keydown', handleEsc);
   }, []);
 
-  return (
+  return (<>
+    <Helmet>
+        <html lang="fr-MA" />
+        <title>KriAgadir | Location de voiture de luxe à Agadir</title>
+        <meta name="description" content="Location de voiture premium à Agadir. Réservez votre voiture de luxe (Lamborghini, Porsche, Ferrari) en 5 minutes. Livraison gratuite." />
+        <meta name="keywords" content="location voiture Agadir, voiture luxe Agadir, location voiture Maroc, KriAgadir" />
+        <meta name="author" content="KriAgadir" />
+        <meta name="robots" content="index, follow" />
+        <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' fill='%23f5a623'/><text x='50%' y='50%' text-anchor='middle' dy='.3em' font-size='70' fill='white'>🚗</text></svg>" />        
+        {/* Open Graph (Facebook, LinkedIn) */}
+        <meta property="og:title" content="KriAgadir - Location voiture luxe Agadir" />
+        <meta property="og:description" content="Voitures de luxe à partir de 200€/jour. Confirmation WhatsApp en 5 minutes." />
+        <meta property="og:image" content="https://images.unsplash.com/photo-1494976388531-d1058494cdd8" />
+        <meta property="og:url" content="https://ellemouaouineabdelilah-del.github.io/kriagadir" />
+        <meta property="og:type" content="website" />
+        
+        {/* Twitter Card */}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="KriAgadir - Location voiture luxe Agadir" />
+        <meta name="twitter:description" content="Réservez votre voiture de luxe à Agadir" />
+        <meta name="twitter:image" content="https://images.unsplash.com/photo-1494976388531-d1058494cdd8" />
+      </Helmet>
     <div className="App">
-      <nav className="navbar">
-        <div className="container">
-          <div className="logo">KriAgadir</div>
-          <ul className="nav-links">
-            <li><a href="#home" onClick={(e) => handleSmoothScroll(e, 'home')}>Accueil</a></li>
-            <li><a href="#fleet" onClick={(e) => handleSmoothScroll(e, 'fleet')}>Flotte</a></li>
-            <li><a href="#contact" onClick={(e) => handleSmoothScroll(e, 'contact')}>Contact</a></li>
-          </ul>
-        </div>
-      </nav>
+    <nav class="navbar"><div class="container"><div class="logo">KriAgadir</div><ul class="nav-links"><li><a href="#home">Accueil</a></li><li><a href="#fleet">Véhicules</a></li><li><a href="#contact">Contact</a></li></ul><div class="navbar-right"><select class="currency-selector"><option>EUR</option><option>MAD</option><option>USD</option></select><select class="language-selector"><option>FR</option><option>AR</option><option>EN</option></select><a href="tel:+212600000000" class="phone-number">+212 600-144245</a></div></div></nav>
 
       <section id="home" className="hero">
         <div className="hero-overlay"></div>
@@ -200,7 +207,7 @@ function App() {
           </div>
         </div>
       </section>
-
+      <section class="brand-logos-section"><div class="container"><h2 class="brands-title">Nos <span class="highlight">Marques</span> Partenaires</h2></div><div class="brands-slider"><div class="brands-track"><div class="brand-card"><div class="brand-icon">🚙</div><p class="brand-name">LAND ROVER</p></div><div class="brand-card"><div class="brand-icon">🏎️</div><p class="brand-name">MASERATI</p></div><div class="brand-card"><div class="brand-icon">🚗</div><p class="brand-name">SEAT</p></div><div class="brand-card"><div class="brand-icon">🚘</div><p class="brand-name">VW</p></div><div class="brand-card"><div class="brand-icon">🚕</div><p class="brand-name">RENAULT</p></div><div class="brand-card"><div class="brand-icon">🚙</div><p class="brand-name">PEUGEOT</p></div><div class="brand-card"><div class="brand-icon">🚗</div><p class="brand-name">HYUNDAI</p></div><div class="brand-card"><div class="brand-icon">🚐</div><p class="brand-name">FIAT</p></div><div class="brand-card"><div class="brand-icon">🏎️</div><p class="brand-name">ALFA ROMEO</p></div><div class="brand-card"><div class="brand-icon">🚙</div><p class="brand-name">LAND ROVER</p></div><div class="brand-card"><div class="brand-icon">🏎️</div><p class="brand-name">MASERATI</p></div><div class="brand-card"><div class="brand-icon">🚗</div><p class="brand-name">SEAT</p></div><div class="brand-card"><div class="brand-icon">🚘</div><p class="brand-name">VW</p></div><div class="brand-card"><div class="brand-icon">🚕</div><p class="brand-name">RENAULT</p></div><div class="brand-card"><div class="brand-icon">🚙</div><p class="brand-name">PEUGEOT</p></div><div class="brand-card"><div class="brand-icon">🚗</div><p class="brand-name">HYUNDAI</p></div><div class="brand-card"><div class="brand-icon">🚐</div><p class="brand-name">FIAT</p></div><div class="brand-card"><div class="brand-icon">🏎️</div><p class="brand-name">ALFA ROMEO</p></div></div></div></section>
       <section className="how-it-works">
         <div className="container">
           <h2>Comment réserver en <span className="highlight">3 étapes</span></h2>
@@ -403,6 +410,7 @@ function App() {
         </div>
       </footer>
     </div>
+    </>
   );
 }
 

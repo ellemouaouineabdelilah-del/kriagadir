@@ -21,68 +21,6 @@ body {
   color: #f5a623;
 }
 
-/* Navigation Bar - Blur/Frosted Glass Effect */
-.navbar {
-  position: fixed;
-  top: 0;
-  width: 100%;
-  background: rgba(0, 0, 0, 0.7);
-  backdrop-filter: blur(15px);
-  -webkit-backdrop-filter: blur(15px);
-  z-index: 1000;
-  padding: 1rem 0;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-  transition: all 0.3s ease;
-}
-
-.navbar .container {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.logo {
-  font-size: 1.5rem;
-  font-weight: bold;
-  background: linear-gradient(135deg, #f5a623, #ff6b6b);
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-  letter-spacing: 1px;
-}
-
-.nav-links {
-  display: flex;
-  gap: 2rem;
-  list-style: none;
-}
-
-.nav-links a {
-  color: white;
-  text-decoration: none;
-  font-weight: 500;
-  transition: all 0.3s;
-  position: relative;
-}
-
-.nav-links a:hover {
-  color: #f5a623;
-}
-
-.nav-links a::after {
-  content: '';
-  position: absolute;
-  bottom: -5px;
-  left: 0;
-  width: 0%;
-  height: 2px;
-  background: #f5a623;
-  transition: width 0.3s;
-}
-
-.nav-links a:hover::after {
-  width: 100%;
-}
 
 /* Hero Section */
 .hero {
@@ -678,5 +616,310 @@ html {
   .btn-book, .btn-whatsapp-small, .btn-call {
     flex: auto;
     width: 100%;
+  }
+}
+/* Add these new styles to your existing CSS */
+
+/* New Navbar Styles */
+.navbar {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background: rgba(0, 0, 0, 0.85);
+  backdrop-filter: blur(13px);
+  z-index: 1000;
+  padding: 1rem 0 0.5rem 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.navbar .container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+
+.logo {
+  font-size: 1.8rem;
+  font-weight: bold;
+  background: linear-gradient(135deg, #f5a623, #ff6b6b);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  letter-spacing: 1px;
+}
+
+.nav-links {
+  display: flex;
+  gap: 2rem;
+  list-style: none;
+}
+
+.nav-links a {
+  color: white;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.3s;
+  padding: 8px 16px;
+  border-radius: 30px;
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.nav-links a:hover {
+  color: #f5a623;
+  background: rgba(245, 166, 35, 0.2);
+}
+
+.navbar-right {
+  display: flex;
+  gap: 15px;
+  align-items: center;
+}
+
+.currency-selector, .language-selector {
+  background: rgba(255, 255, 255, 0.1);
+  color: white;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  padding: 8px 12px;
+  border-radius: 20px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.phone-number {
+  color: #f5a623;
+  text-decoration: none;
+  font-weight: bold;
+  padding: 8px 16px;
+  background: rgba(245, 166, 35, 0.1);
+  border-radius: 30px;
+  transition: all 0.3s;
+}
+
+.phone-number:hover {
+  background: rgba(245, 166, 35, 0.2);
+}
+
+/* Brands Strip */
+.brands-strip {
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(10px);
+  padding: 10px 0;
+  margin-top: 10px;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.brands-scroll {
+  display: flex;
+  gap: 2rem;
+  overflow-x: auto;
+  scrollbar-width: thin;
+  padding: 5px 0;
+}
+
+.brands-scroll::-webkit-scrollbar {
+  height: 3px;
+}
+
+.brands-scroll::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.brands-scroll::-webkit-scrollbar-thumb {
+  background: #f5a623;
+  border-radius: 10px;
+}
+
+.brand-item {
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 14px;
+  font-weight: 500;
+  white-space: nowrap;
+  transition: color 0.3s;
+  cursor: pointer;
+}
+
+.brand-item:hover {
+  color: #f5a623;
+}
+
+/* Moving Car Animation */
+.moving-car-container {
+  position: absolute;
+  bottom: 20%;
+  left: 0;
+  width: 100%;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.moving-car {
+  display: flex;
+  gap: 50px;
+  animation: driveBy 8s linear infinite;
+}
+
+.car-silhouette {
+  font-size: 60px;
+  filter: drop-shadow(0 0 10px rgba(245, 166, 35, 0.5));
+  animation: bounce 0.5s ease infinite;
+}
+
+.car-silhouette.second {
+  animation-delay: 0.3s;
+  font-size: 50px;
+  opacity: 0.7;
+}
+
+@keyframes driveBy {
+  0% {
+    transform: translateX(-20%);
+  }
+  100% {
+    transform: translateX(120%);
+  }
+}
+
+@keyframes bounce {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-5px);
+  }
+}
+
+/* Responsive Navbar */
+@media (max-width: 992px) {
+  .navbar .container {
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  .nav-links {
+    gap: 1rem;
+  }
+  
+  .navbar-right {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+}
+
+@media (max-width: 768px) {
+  .nav-links {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  
+  .brands-scroll {
+    gap: 1rem;
+  }
+  
+  .car-silhouette {
+    font-size: 40px;
+  }
+}
+/* Sliding Brand Logos Section */
+.brand-logos-section {
+  padding: 3rem 0;
+  background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);
+  overflow: hidden;
+}
+
+.brands-title {
+  text-align: center;
+  font-size: 2rem;
+  margin-bottom: 3rem;
+  color: white;
+}
+
+.brands-slider {
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+}
+
+.brands-track {
+  display: flex;
+  gap: 2rem;
+  animation: slideBrands 20s linear infinite;
+  width: fit-content;
+}
+
+.brand-card {
+  text-align: center;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  min-width: 120px;
+}
+
+.brand-card:hover {
+  transform: translateY(-5px);
+}
+
+.brand-icon {
+  width: 80px;
+  height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 60px;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 50%;
+  margin: 0 auto;
+  transition: all 0.3s ease;
+}
+
+.brand-card:hover .brand-icon {
+  transform: scale(1.1);
+  background: rgba(245, 166, 35, 0.2);
+  box-shadow: 0 0 20px rgba(245, 166, 35, 0.3);
+}
+
+.brand-name {
+  margin-top: 0.5rem;
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 0.8rem;
+  font-weight: 500;
+  letter-spacing: 1px;
+}
+
+.brand-card:hover .brand-name {
+  color: #f5a623;
+}
+
+/* Sliding Animation */
+@keyframes slideBrands {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+/* Pause animation on hover */
+.brands-slider:hover .brands-track {
+  animation-play-state: paused;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .brand-icon {
+    width: 60px;
+    height: 60px;
+    font-size: 40px;
+  }
+  
+  .brand-name {
+    font-size: 0.7rem;
+  }
+  
+  .brand-card {
+    min-width: 90px;
   }
 }
