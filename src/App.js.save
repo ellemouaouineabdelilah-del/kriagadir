@@ -1,0 +1,135 @@
+import React fro'react';
+import './App.css';
+
+function App() {
+  // Vehicle data with FREE online images (no local files needed!)
+  const vehicles = [
+    { id: 1, name: 'Mercedes Classe A', image: 'https://images.unsplash.com/photo-1568605117036-5fe5e7fa0ac7?w=500&h=300&fit=crop', price: '450 MAD/jour', type: 'Premium' },
+    { id: 2, name: 'BMW Série 3', image: 'https://images.unsplash.com/photo-1555215695-3004980ad54e?w=500&h=300&fit=crop', price: '550 MAD/jour', type: 'Luxe' },
+    { id: 3, name: 'Range Rover Evoque', image: 'https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?w=500&h=300&fit=crop', price: '800 MAD/jour', type: 'SUV' },
+    { id: 4, name: 'Dacia Duster', image: 'https://images.unsplash.com/photo-1621007947382-bb3c3994e3fb?w=500&h=300&fit=crop', price: '250 MAD/jour', type: 'Économique' },
+  ];
+
+  const whatsappNumber = '212600000000'; // Replace with KriAgadir's actual WhatsApp number
+  const whatsappLink = `https://wa.me/${whatsappNumber}?text=Bonjour%2C%20je%20souhaite%20r%C3%A9server%20une%20voiture%20%C3%A0%20Agadir.`;
+
+  return (
+    <div className="App">
+      {/* Navigation Bar */}
+      <nav className="navbar">
+        <div className="container">
+          <div className="logo">KriAgadir</div>
+          <ul className="nav-links">
+            <li><a href="#home">Accueil</a></li>
+            <li><a href="#fleet">Flotte</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+        </div>
+      </nav>
+
+      {/* Hero Section */}
+      <section id="home" className="hero">
+        <div className="hero-overlay"></div>
+        <div className="container hero-content">
+          <h1>Location de voiture <span className="highlight">Premium</span> à Agadir</h1>
+          <p>Votre voiture confirmée en 5 minutes. Livraison gratuite à Agadir ✨</p>
+          <div className="hero-badges">
+            <span>✅ Livraison gratuite</span>
+            <span>📱 Confirmation WhatsApp</span>
+            <span>🔒 Caution restituée</span>
+          </div>
+          <a href={whatsappLink} className="btn-primary" target="_blank" rel="noopener noreferrer">
+            Réserver via WhatsApp →
+          </a>
+          <div className="cities">
+            <span>📍 Agadir</span>
+            <span>📍 Marrakech</span>
+            <span>📍 Casablanca</span>
+            <span>📍 Rabat</span>
+          </div>
+        </div>
+      </section>
+
+      {/* How It Works Section */}
+      <section className="how-it-works">
+        <div className="container">
+          <h2>Comment réserver en <span className="highlight">3 étapes</span></h2>
+          <div className="steps">
+            <div className="step">
+              <div className="step-number">1</div>
+              <h3>Ouvrir WhatsApp</h3>
+              <p>Cliquez sur le lien de réservation</p>
+            </div>
+            <div className="step">
+              <div className="step-number">2</div>
+              <h3>Envoyer votre demande</h3>
+              <p>Date, véhicule, lieu de livraison</p>
+            </div>
+            <div className="step">
+              <div className="step-number">3</div>
+              <h3>Recevoir confirmation</h3>
+              <p>Réponse sous 5 minutes ✓</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Fleet Section */}
+      <section id="fleet" className="fleet">
+        <div className="container">
+          <h2>Notre Flotte de Véhicules</h2>
+          <p className="section-subtitle">Des voitures mondiales pour toutes vos envies</p>
+          <div className="car-grid">
+            {vehicles.map(car => (
+              <div key={car.id} className="car-card">
+                <img src={car.image} alt={car.name} />
+                <div className="car-info">
+                  <h3>{car.name}</h3>
+                  <p className="car-type">{car.type}</p>
+                  <p className="car-price">{car.price}</p>
+                  <a href={whatsappLink} className="btn-small" target="_blank" rel="noopener noreferrer">
+                    Réserver
+                  </a>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Contact Section */}
+      <section id="contact" className="contact">
+        <div className="container">
+          <div className="contact-content">
+            <h2>Contactez-Nous</h2>
+            <p>Une équipe humaine, disponible 24/7 à Agadir et partout au Maroc</p>
+            <div className="contact-details">
+              <div className="contact-item">
+                <h3>📱 Réservez en quelques minutes</h3>
+                <p>Réponse en 5 min • Confirmation humaine • Sans paiement en ligne</p>
+                <a href={whatsappLink} className="btn-whatsapp" target="_blank" rel="noopener noreferrer">
+                  Envoyer un message WhatsApp
+                </a>
+              </div>
+              <div className="contact-item">
+                <h3>📍 Agence principale</h3>
+                <p>Agadir, Maroc (Livraison gratuite en ville)</p>
+                <h3>📞 Appel direct</h3>
+                <p>+212 6XX XXX XXX</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Footer */}
+      <footer className="footer">
+        <div className="container">
+          <p>&copy; 2025 KriAgadir - Location de voiture premium à Agadir. Tous droits réservés.</p>
+        </div>
+      </footer>
+    </div>
+  );
+}
+
+export default App
