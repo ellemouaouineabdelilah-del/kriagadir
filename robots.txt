@@ -1,3 +1,5 @@
-# https://www.robotstxt.org/robotstxt.html
-User-agent: *
-Disallow:
+user-agent: *
+Allow: /
+Sitemap: https://ellemouaouineabdelilah-del.github.io/kriagadir/sitemap.xml
+Disallow: /admin
+Disallow: /private

@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>https://ellemouaouineabdelilah-del.github.io/kriagadir/</loc>
+    <lastmod>2025-06-01</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://ellemouaouineabdelilah-del.github.io/kriagadir/#fleet</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://ellemouaouineabdelilah-del.github.io/kriagadir/#contact</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+</urlset>
+<Helmet>
+  <script type="application/ld+json">
+    {`
+      {
+        "@context": "https://schema.org",
+        "@type": "AutoRental",
+        "name": "KriAgadir",
+        "description": "Location de voiture de luxe à Agadir",
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Agadir",
+          "addressCountry": "MA"
+        },
+        "priceRange": "€€",
+        "telephone": "+212600144245",
+        "url": "https://ellemouaouineabdelilah-del.github.io/kriagadir",
+        "availableVehicle": [
+          {
+            "@type": "Vehicle",
+            "name": "Lamborghini Urus",
+            "price": "2000",
+            "priceCurrency": "EUR"
+          },
+          {
+            "@type": "Vehicle",
+            "name": "Porsche 911 Turbo S",
+            "price": "1500",
+            "priceCurrency": "EUR"
+          }
+        ]
+      }
+    `}
+  </script>
+</Helmet>
