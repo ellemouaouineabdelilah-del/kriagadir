@@ -5,7 +5,6 @@ function App() {
   const [selectedCar, setSelectedCar] = useState(null);
   const [showModal, setShowModal] = useState(false);
   
-  // Rental form state
   const [rentalData, setRentalData] = useState({
     startDate: '',
     endDate: '',
@@ -19,17 +18,95 @@ function App() {
     }
   });
 
-  // Vehicle data
+  // Luxury Car Fleet - Same style as rentalmoroccocars.com
   const vehicles = [
-    { id: 1, name: 'Mercedes Classe A', image: 'https://images.unsplash.com/photo-1568605117036-5fe5e7fa0ac7?w=500&h=300&fit=crop', price: 450, priceText: '450 MAD/jour', type: 'Premium', transmission: 'Automatique', seats: 5 },
-    { id: 2, name: 'BMW Série 3', image: 'https://images.unsplash.com/photo-1555215695-3004980ad54e?w=500&h=300&fit=crop', price: 550, priceText: '550 MAD/jour', type: 'Luxe', transmission: 'Automatique', seats: 5 },
-    { id: 3, name: 'Range Rover Evoque', image: 'https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?w=500&h=300&fit=crop', price: 800, priceText: '800 MAD/jour', type: 'SUV', transmission: 'Automatique', seats: 5 },
-    { id: 4, name: 'Dacia Duster', image: 'https://images.unsplash.com/photo-1621007947382-bb3c3994e3fb?w=500&h=300&fit=crop', price: 250, priceText: '250 MAD/jour', type: 'Économique', transmission: 'Manuelle', seats: 5 },
+    { 
+      id: 1, 
+      name: 'Lamborghini Urus', 
+      image: 'https://images.unsplash.com/photo-1621135802920-133df287f89c?w=500&h=300&fit=crop', 
+      price: 2000, 
+      priceText: '2000€/day', 
+      type: 'Luxury', 
+      transmission: 'Auto', 
+      fuel: 'Essence',
+      seats: 5,
+      insurance: true
+    },
+    { 
+      id: 2, 
+      name: 'Porsche 911 Turbo S', 
+      image: 'https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=500&h=300&fit=crop', 
+      price: 1500, 
+      priceText: '1500€/day', 
+      type: 'Sport', 
+      transmission: 'Auto', 
+      fuel: 'Essence',
+      seats: 4,
+      insurance: true
+    },
+    { 
+      id: 3, 
+      name: 'Mercedes-AMG G 63', 
+      image: 'https://images.unsplash.com/photo-1605559424843-9e4c228bf1c2?w=500&h=300&fit=crop', 
+      price: 1000, 
+      priceText: '1000€/day', 
+      type: 'Luxury', 
+      transmission: 'Auto', 
+      fuel: 'Essence',
+      seats: 5,
+      insurance: true
+    },
+    { 
+      id: 4, 
+      name: 'Ferrari F8 Tributo', 
+      image: 'https://images.unsplash.com/photo-1584345604476-8ec5e5e5061c?w=500&h=300&fit=crop', 
+      price: 2500, 
+      priceText: '2500€/day', 
+      type: 'Sport', 
+      transmission: 'Auto', 
+      fuel: 'Essence',
+      seats: 2,
+      insurance: true
+    },
+    { 
+      id: 5, 
+      name: 'Range Rover Sport', 
+      image: 'https://images.unsplash.com/photo-1606664515524-ed2f786a0bd6?w=500&h=300&fit=crop', 
+      price: 800, 
+      priceText: '800€/day', 
+      type: 'SUV', 
+      transmission: 'Auto', 
+      fuel: 'Diesel',
+      seats: 5,
+      insurance: true
+    },
+    { 
+      id: 6, 
+      name: 'Audi R8', 
+      image: 'https://images.unsplash.com/photo-1606664515524-ed2f786a0bd6?w=500&h=300&fit=crop', 
+      price: 1800, 
+      priceText: '1800€/day', 
+      type: 'Sport', 
+      transmission: 'Auto', 
+      fuel: 'Essence',
+      seats: 2,
+      insurance: true
+    }
   ];
 
-  const whatsappNumber = '212600000000'; // Replace with KriAgadir's actual WhatsApp number
+  const whatsappNumber = '212600000000';
+  const phoneNumber = '+212600000000';
 
-  // Calculate total price
+  const handleWhatsApp = (car) => {
+    const message = `Bonjour! Je souhaite louer ${car.name} (${car.priceText}). Merci de me contacter pour plus d'informations.`;
+    const url = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
+    window.open(url, '_blank');
+  };
+
+  const handleCallNow = () => {
+    window.location.href = `tel:${phoneNumber}`;
+  };
+
   const calculateTotal = () => {
     if (!selectedCar || !rentalData.startDate || !rentalData.endDate) return 0;
     const start = new Date(rentalData.startDate);
@@ -37,8 +114,6 @@ function App() {
     const days = Math.max(1, Math.ceil((end - start) / (1000 * 60 * 60 * 24)));
     let total = selectedCar.price * days;
     
-    // Add extras
-    if (rentalData.extras.insurance) total += 50 * days;
     if (rentalData.extras.driver) total += 200 * days;
     if (rentalData.extras.babySeat) total += 30 * days;
     if (rentalData.extras.gps) total += 25 * days;
@@ -48,15 +123,13 @@ function App() {
 
   const { total, days } = calculateTotal();
 
-  // Handle reservation submission
   const handleReservation = () => {
     const extrasList = [];
-    if (rentalData.extras.insurance) extrasList.push('✅ Assurance premium');
     if (rentalData.extras.driver) extrasList.push('👨‍✈️ Chauffeur privé');
     if (rentalData.extras.babySeat) extrasList.push('👶 Siège bébé');
     if (rentalData.extras.gps) extrasList.push('🗺️ GPS');
 
-    const message = `Bonjour KriAgadir! 👋\n\nJe souhaite réserver:\n🚗 ${selectedCar.name} (${selectedCar.type})\n📅 Du: ${rentalData.startDate} à ${rentalData.startTime}\n📅 Au: ${rentalData.endDate} à ${rentalData.endTime}\n⏱️ Durée: ${days} jour(s)\n💰 Prix total: ${total} MAD\n${extrasList.length > 0 ? `\n➕ Options supplémentaires:\n${extrasList.join('\n')}` : ''}\n\nMerci de confirmer ma réservation! 🙏`;
+    const message = `Bonjour KriAgadir! 👋\n\nJe souhaite réserver:\n🚗 ${selectedCar.name} (${selectedCar.type})\n📅 Du: ${rentalData.startDate} à ${rentalData.startTime}\n📅 Au: ${rentalData.endDate} à ${rentalData.endTime}\n⏱️ Durée: ${days} jour(s)\n💰 Prix total: ${total}€\n${extrasList.length > 0 ? `\n➕ Options supplémentaires:\n${extrasList.join('\n')}` : ''}\n\nMerci de confirmer ma réservation! 🙏`;
     
     const whatsappLink = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
     window.open(whatsappLink, '_blank');
@@ -64,36 +137,27 @@ function App() {
     setSelectedCar(null);
   };
 
-  // Smooth scroll function
   const handleSmoothScroll = (e, targetId) => {
     e.preventDefault();
     const targetElement = document.getElementById(targetId);
     if (targetElement) {
-      targetElement.scrollIntoView({
-        behavior: 'smooth',
-        block: 'start',
-      });
+      targetElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
       window.history.pushState(null, '', `#${targetId}`);
     }
   };
 
-  // Handle initial hash in URL
   useEffect(() => {
     if (window.location.hash) {
       const targetId = window.location.hash.substring(1);
       const targetElement = document.getElementById(targetId);
       if (targetElement) {
         setTimeout(() => {
-          targetElement.scrollIntoView({
-            behavior: 'smooth',
-            block: 'start',
-          });
+          targetElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
         }, 100);
       }
     }
   }, []);
 
-  // Close modal on escape key
   useEffect(() => {
     const handleEsc = (e) => {
       if (e.key === 'Escape') setShowModal(false);
@@ -104,7 +168,6 @@ function App() {
 
   return (
     <div className="App">
-      {/* Navigation Bar - Blur/Frosted Glass */}
       <nav className="navbar">
         <div className="container">
           <div className="logo">KriAgadir</div>
@@ -116,16 +179,15 @@ function App() {
         </div>
       </nav>
 
-      {/* Hero Section */}
       <section id="home" className="hero">
         <div className="hero-overlay"></div>
         <div className="container hero-content">
           <h1>Location de voiture <span className="highlight">Premium</span> à Agadir</h1>
-          <p>Votre voiture confirmée en 5 minutes. Livraison gratuite à Agadir ✨</p>
+          <p>Votre voiture de luxe confirmée en 5 minutes. Livraison gratuite à Agadir ✨</p>
           <div className="hero-badges">
             <span>✅ Livraison gratuite</span>
             <span>📱 Confirmation WhatsApp</span>
-            <span>🔒 Caution restituée</span>
+            <span>🔒 Assurance incluse</span>
           </div>
           <a href={`https://wa.me/${whatsappNumber}`} className="btn-primary" target="_blank" rel="noopener noreferrer">
             Réserver via WhatsApp →
@@ -139,7 +201,6 @@ function App() {
         </div>
       </section>
 
-      {/* How It Works Section */}
       <section className="how-it-works">
         <div className="container">
           <h2>Comment réserver en <span className="highlight">3 étapes</span></h2>
@@ -163,29 +224,51 @@ function App() {
         </div>
       </section>
 
-      {/* Fleet Section */}
       <section id="fleet" className="fleet">
         <div className="container">
-          <h2>Notre Flotte de Véhicules</h2>
-          <p className="section-subtitle">Des voitures mondiales pour toutes vos envies</p>
+          <h2>Notre Flotte de <span className="highlight">Véhicules de Luxe</span></h2>
+          <p className="section-subtitle">Des voitures d'exception pour des moments uniques</p>
           <div className="car-grid">
             {vehicles.map(car => (
               <div key={car.id} className="car-card">
+                <div className="car-type-badge">{car.type}</div>
                 <img src={car.image} alt={car.name} />
                 <div className="car-info">
                   <h3>{car.name}</h3>
-                  <p className="car-type">{car.type}</p>
-                  <p className="car-transmission">⚙️ {car.transmission} | 🪑 {car.seats} places</p>
                   <p className="car-price">{car.priceText}</p>
-                  <button 
-                    className="btn-small" 
-                    onClick={() => {
-                      setSelectedCar(car);
-                      setShowModal(true);
-                    }}
-                  >
-                    📅 Réserver
-                  </button>
+                  
+                  <div className="car-features">
+                    <div className="feature">
+                      <span>✓</span> Insurance included
+                    </div>
+                    <div className="feature-details">
+                      <span>{car.seats} • {car.fuel} • {car.transmission}</span>
+                    </div>
+                  </div>
+
+                  <div className="car-buttons">
+                    <button 
+                      className="btn-book"
+                      onClick={() => {
+                        setSelectedCar(car);
+                        setShowModal(true);
+                      }}
+                    >
+                      Book Now
+                    </button>
+                    <button 
+                      className="btn-whatsapp-small"
+                      onClick={() => handleWhatsApp(car)}
+                    >
+                      WhatsApp
+                    </button>
+                    <button 
+                      className="btn-call"
+                      onClick={handleCallNow}
+                    >
+                      Call Now
+                    </button>
+                  </div>
                 </div>
               </div>
             ))}
@@ -193,7 +276,6 @@ function App() {
         </div>
       </section>
 
-      {/* Contact Section */}
       <section id="contact" className="contact">
         <div className="container">
           <div className="contact-content">
@@ -211,14 +293,13 @@ function App() {
                 <h3>📍 Agence principale</h3>
                 <p>Agadir, Maroc (Livraison gratuite en ville)</p>
                 <h3>📞 Appel direct</h3>
-                <p>+212 6XX XXX XXX</p>
+                <a href={`tel:${phoneNumber}`} className="phone-link">{phoneNumber}</a>
               </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Modal Popup for Reservation */}
       {showModal && selectedCar && (
         <div className="modal-overlay" onClick={() => setShowModal(false)}>
           <div className="modal-content" onClick={(e) => e.stopPropagation()}>
@@ -247,15 +328,6 @@ function App() {
                     onChange={(e) => setRentalData({...rentalData, startTime: e.target.value})}
                   />
                 </div>
-                <div className="form-group">
-                  <label>📍 Lieu de livraison</label>
-                  <select defaultValue="Agadir">
-                    <option>Agadir Centre</option>
-                    <option>Aéroport Agadir</option>
-                    <option>Marrakech</option>
-                    <option>Autre (précisez dans WhatsApp)</option>
-                  </select>
-                </div>
               </div>
 
               <div className="form-group">
@@ -268,31 +340,8 @@ function App() {
                 />
               </div>
 
-              <div className="form-row">
-                <div className="form-group">
-                  <label>⏰ Heure de fin</label>
-                  <input 
-                    type="time" 
-                    value={rentalData.endTime}
-                    onChange={(e) => setRentalData({...rentalData, endTime: e.target.value})}
-                  />
-                </div>
-              </div>
-
               <div className="extras-section">
                 <h3>Options supplémentaires</h3>
-                <label className="checkbox-label">
-                  <input 
-                    type="checkbox" 
-                    checked={rentalData.extras.insurance}
-                    onChange={(e) => setRentalData({
-                      ...rentalData, 
-                      extras: {...rentalData.extras, insurance: e.target.checked}
-                    })}
-                  />
-                  🛡️ Assurance premium (+50 MAD/jour)
-                </label>
-                
                 <label className="checkbox-label">
                   <input 
                     type="checkbox" 
@@ -302,7 +351,7 @@ function App() {
                       extras: {...rentalData.extras, driver: e.target.checked}
                     })}
                   />
-                  👨‍✈️ Chauffeur privé (+200 MAD/jour)
+                  👨‍✈️ Chauffeur privé (+200€/jour)
                 </label>
                 
                 <label className="checkbox-label">
@@ -314,7 +363,7 @@ function App() {
                       extras: {...rentalData.extras, babySeat: e.target.checked}
                     })}
                   />
-                  👶 Siège bébé (+30 MAD/jour)
+                  👶 Siège bébé (+30€/jour)
                 </label>
                 
                 <label className="checkbox-label">
@@ -326,19 +375,13 @@ function App() {
                       extras: {...rentalData.extras, gps: e.target.checked}
                     })}
                   />
-                  🗺️ GPS (+25 MAD/jour)
+                  🗺️ GPS (+25€/jour)
                 </label>
               </div>
 
               {rentalData.startDate && rentalData.endDate && (
                 <div className="price-breakdown">
-                  <h3>💰 Détail du prix</h3>
-                  <p>{selectedCar.name}: {selectedCar.price} MAD × {days} jour(s) = {selectedCar.price * days} MAD</p>
-                  {rentalData.extras.insurance && <p>+ Assurance: 50 × {days} = {50 * days} MAD</p>}
-                  {rentalData.extras.driver && <p>+ Chauffeur: 200 × {days} = {200 * days} MAD</p>}
-                  {rentalData.extras.babySeat && <p>+ Siège bébé: 30 × {days} = {30 * days} MAD</p>}
-                  {rentalData.extras.gps && <p>+ GPS: 25 × {days} = {25 * days} MAD</p>}
-                  <h4 className="total-price">Total: {total} MAD</h4>
+                  <h4 className="total-price">Total: {total}€</h4>
                 </div>
               )}
 
@@ -354,10 +397,9 @@ function App() {
         </div>
       )}
 
-      {/* Footer */}
       <footer className="footer">
         <div className="container">
-          <p>&copy; 2025 KriAgadir - Location de voiture premium à Agadir. Tous droits réservés.</p>
+          <p>&copy; 2025 KriAgadir - Location de voiture de luxe à Agadir. Tous droits réservés.</p>
         </div>
       </footer>
     </div>

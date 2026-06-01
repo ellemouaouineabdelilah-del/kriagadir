@@ -569,3 +569,114 @@ html {
     padding: 1.5rem;
   }
 }
+/* Add these new styles to your existing CSS */
+
+.car-type-badge {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  background: rgba(0,0,0,0.7);
+  backdrop-filter: blur(5px);
+  color: #f5a623;
+  padding: 5px 12px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: bold;
+  z-index: 1;
+}
+
+.car-card {
+  position: relative;
+}
+
+.car-features {
+  margin: 15px 0;
+  padding: 10px 0;
+  border-top: 1px solid #eee;
+  border-bottom: 1px solid #eee;
+}
+
+.feature {
+  color: #4CAF50;
+  font-weight: 500;
+  margin-bottom: 8px;
+}
+
+.feature span {
+  color: #4CAF50;
+  margin-right: 5px;
+}
+
+.feature-details {
+  color: #666;
+  font-size: 14px;
+}
+
+.car-buttons {
+  display: flex;
+  gap: 10px;
+  margin-top: 15px;
+}
+
+.btn-book {
+  flex: 1;
+  background: linear-gradient(135deg, #f5a623, #ff6b6b);
+  color: white;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: transform 0.2s;
+}
+
+.btn-whatsapp-small {
+  flex: 1;
+  background: #25D366;
+  color: white;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: transform 0.2s;
+}
+
+.btn-call {
+  flex: 1;
+  background: #1a1a1a;
+  color: white;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: transform 0.2s;
+}
+
+.btn-book:hover, .btn-whatsapp-small:hover, .btn-call:hover {
+  transform: translateY(-2px);
+}
+
+.phone-link {
+  color: #f5a623;
+  text-decoration: none;
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+.phone-link:hover {
+  text-decoration: underline;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .car-buttons {
+    flex-wrap: wrap;
+  }
+  
+  .btn-book, .btn-whatsapp-small, .btn-call {
+    flex: auto;
+    width: 100%;
+  }
+}
